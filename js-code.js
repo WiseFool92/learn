@@ -154,3 +154,38 @@ fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=[[API-KEY-
 
 
 // Currying
+
+// Uncurried Function
+function aThingIMaybeLike(howMuchILikeIt, thing, reason) {
+  return 'I ${howMuchILikeIt} ${thing} because ${reason}.';
+}
+
+aThingIMaybeLike("really like", "functional programming", "it's cool");
+
+// Curried
+function aThingIMaybeLike(howMuchILikeIt) {
+  return function(thing) {
+    return function(reason) {
+      return 'I ${howMuchILikeIt} ${thing} because ${reason}.';
+    }
+  }
+}
+
+aThingIMaybeLike("really like")("functional programming")("it's cool")
+
+// Example of how currying adds modularity to code
+const thingsThatBugMe = aThingIMaybeLike("do not like");
+
+// Then call with different inner arguments
+thingsThatBugMe("global variables")("they are a code smell");
+> 'I do not like global variables because they are a code smell.'
+thingsThatBugMe("functions with side effects")("they break code");
+> 'I do not like functions with side effects because they break code.'
+
+// Doing this with multiple arguements as well
+const reasonIlLoveCoding = aThingIMaybeLike("love")("coding");
+// test in Repl
+> reasonILoveCoding("it is fun");
+'I love coding because it is fun.'
+> reasonILoveCoding("I enjoy problem-solving");
+'I love coding because I enjoy problem-solving.'
