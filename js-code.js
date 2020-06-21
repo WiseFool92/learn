@@ -189,3 +189,49 @@ const reasonIlLoveCoding = aThingIMaybeLike("love")("coding");
 'I love coding because it is fun.'
 > reasonILoveCoding("I enjoy problem-solving");
 'I love coding because I enjoy problem-solving.'
+
+
+
+
+
+// Map, Reduce & Filter
+const numArray = [1, 2, 3, 4, 5];
+let doubledArray = [];
+numArray.forEach(function(element) {
+  doubledArray.push(element * 2);
+});
+doubledArray;
+
+// map
+const numArray = [1, 2, 3, 4, 5];
+const doubledArray = numArray.map(function(element) {
+  return element * 2;
+});
+doubledArray;
+// if you wanted to use arrow functions
+const doubledArray = numArray.map (e => e * 2);
+
+// Reduce
+const numArray = [3, 7, 5];
+const summedArray = numArray.reduce(function(currentValue, element) {
+  return element + currentValue;
+}, 0);
+
+const friends = [
+  {
+    name: "Jasmine",
+    wantToDo: ["hike", "go out to eat", "swim"]
+  },
+  {
+    name: "Ada",
+    wantToDo: ["play games", "hike", "cook meals"]
+  },
+  {
+    name: "Desmond",
+    wantToDo: ["sleep", "swim", "play games"]
+  },
+  {
+    name: "Andres",
+    wantToDo: ["hike", "swim", "play games"]
+  }
+];
