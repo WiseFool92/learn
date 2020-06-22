@@ -326,3 +326,38 @@ incrementCounter() {
     }
   }
 }
+
+// LIFO, which means "last in, first out." 
+
+// Recursive function acting as a reverse function
+const recurseReverse = (string) => {
+  if (string === "") {
+    return "";
+  } else {
+    return recurseReverse(string.substring(1)) + string[0];
+  }
+}
+
+// Call our function with argument
+string = "fern"
+recurseReverse("fern")
+// What it would print back
+recurseReverse() {
+  return "";
+  recurseReverse() {
+    return "f";
+    recurseReverse() {
+      return "e";
+      recurseReverse() {
+        return "r";
+        recurseReverse() {
+          return "n";
+        }
+      }
+    }
+  }
+}
+"n" + "r" + "e" + "f" + "" // LIFO, which means "last in, first out." 
+
+// trampoline function. 
+// A trampoline function wraps a recursive function in a loop and breaks it down so each function isn't heaped on the stack.
