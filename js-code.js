@@ -235,3 +235,94 @@ const friends = [
     wantToDo: ["hike", "swim", "play games"]
   }
 ];
+
+// Ex # 1
+const toDos = friends.reduce(function(array, friend) {
+  return array.concat(friend.wantToDo);
+});
+// In Repl
+> toDos
+'["hike", "go out to eat", "swim", "play games", "hike", "cook meals", "sleep", "swim", "play games", "hike", "swim", "play games"]`
+
+// Ex # 2
+const toDoTally = toDos.reduce(function(voteTally, toDo) {
+  voteTally[toDo] = (voteTally[toDo] || 0) +1;
+  return voteTally;
+}, {});
+// In Repl
+> toDoTally
+{
+  "hike:": 3,
+  "go out to eat": 1,
+  "swim": 3,
+  "play games": 3,
+  "cook meals": 1,
+  "sleep": 1
+}
+
+// Sort
+const mostPopular = Object.entries(toDoTally).sort(function(a,b) { return b[1] - a[1] });
+// In Repl
+> mostPopular
+[["hike", 3], ["swim", 3], ["play games", 3], ["go out to eat", 1], ["cook meals", 1], ["sleep", 1]]
+
+// Filter
+const numArray = [7, 14, 32, 8];
+const filteredArray = numArray.filter(e => e > 10);
+
+const employees = [
+  {
+    name: "Ada",
+    role: "developer"
+  },
+  {
+    name: "Tom",
+    role: "HR"
+  },
+  {
+    name: "Jasmine",
+    role: "developer"
+  },
+  {
+    name: "Hank",
+    role: "administrative assistant"
+  }
+];
+
+// In Repl
+> const developers = employees.filter(e => e.role === "developer")
+[ { name: 'Ada', role: 'developer' },
+  { name: 'Jasmine', role: 'developer' } ]
+
+
+// Recursion
+// How we first learned to write this:
+let counter = 0
+for (let i = 0; i < 3 ; i++) {
+  counter += 1
+}
+
+// How to Solve Recursively
+const incrementCounter = (counter) => {
+  if (isNaN(counter)) {  // This is the termination condition.
+    return;
+  }
+  if (counter >= 3) {
+    return counter;
+  } else {
+    console.log(counter);
+    return incrementCounter(counter + 1); // This is the base case (The final condition of a successfully called recursive function)
+  }
+}
+incrementCounter(0);
+
+// Order of Functions completing
+incrementCounter() {
+  // This call will complete last.
+  return incrementCounter() {
+    // This call will complete second.
+    return incrementCounter() {
+      // This call will complete first.
+    }
+  }
+}
