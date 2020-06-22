@@ -618,8 +618,114 @@ const incrementer = counterFunction();
 > incrementerTwo()
 > const incrementerTwo = counterFunction();
 > incrementerTwo()
+> const incrementerTwo = counterFunction();
+> incrementerTwo()
 1
 > incrementerTwo()
 2
 > incrementer()
 4
+
+
+
+// Building a functional application
+class Plant {
+  constructor() {
+    this.water = 0;
+    this.soil = 0;
+    this.light = 0;
+  }
+
+  hydrate() {
+    this.water ++
+  }
+
+  feed() {
+    this.soil ++
+  }
+
+  giveLight() {
+    this.light ++
+  }
+}
+
+// In Repl
+// To create and hydrate a plant, we'd do the following:
+
+> let plant = new Plant();
+> plant.hydrate()
+> plant
+Plant {water: 1, soil: 0, light: 0}
+
+// rewrite hydrate() method
+
+const hydrate = (plant) => {
+  return {
+    ...plant,
+    water: (plant.water || 0) + 1
+  }
+};
+
+//feed() function:
+
+const feed = (plant) => {
+  return {
+    ...plant,
+    soil: (plant.soil || 0) + 1
+  }
+};
+
+// refactor
+const changePlantState = (plant, property) => {
+  return {
+    ...plant,
+    [property]: (plant[property] || 0) + 1
+  }
+}
+
+// Call in repl
+
+> let plant = { soil: 0, light: 0, water: 0 }
+> changePlantState(plant, "soil")
+{soil: 1, light: 0, water: 0}
+
+// variables more abstract:
+
+const changeState = (state, prop) => {
+  return {
+    ...state,
+    [prop]: (state[prop] || 0) + 1
+  }
+}
+
+// accept a value:
+
+const changeState = (state, prop, value) => ({
+  ...state,
+  [prop] : (state[prop] || 0) + value
+})
+
+// curried function 
+
+const changeState = (prop) => {
+  return (value) => {
+    return (state) => ({
+      ...state,
+      [prop] : (state[prop] || 0) + value
+    })
+  }
+}
+
+// Use the above to create smaller modular functions
+const feed = changeState("soil");
+const hydrate = changeState("water");
+const giveLight = changeState("light");
+
+feed(5)(plant)
+
+// More specific
+const blueFood = changeState("soil")(5)
+const greenFood = changeState("soil")(10)
+const yuckyFood = changeState("soil")(-5)
+
+blueFood(plant)
