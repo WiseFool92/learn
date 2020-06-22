@@ -499,3 +499,89 @@ const canEat = function(creature) {
 > const salmon = canEat("salmon");
 > salmon.eat("insects")
 'The salmon eats the insects.'
+
+// Adds more actions to the animals
+const canDoThings = function(creature) {
+  const obj = {
+    eat: function(food) {
+      return `The ${creature} eats the ${food}.`
+    },
+    sleep: function() {
+      return `The ${creature} sleeps.`
+    }
+  }
+  return obj;
+}
+
+// Refactor the above for reusability and modularity
+const canEat = function(creature) {
+  const obj = {
+    eat: function(food) {
+      return `The ${creature} eats the ${food}.`
+    }
+  }
+  return obj;
+}
+
+const canSleep = function(creature) {
+  const obj = {
+    sleep: function() {
+      return `The ${creature} sleeps.`
+    }
+  }
+  return obj;
+}
+
+// Function factory - object composition
+const sleepingEatingCreature = function() {
+  let state = {
+    name
+  }
+  return { ...state, ...canEat(state), ...canSleep(state) };
+}
+
+// Use spread operator to merge the three objects together
+const canEat = function(creature) {
+  const obj = {
+    eat: function(food) {
+      return `The ${creature.name} eats the ${food}.`
+    }
+  }
+  return obj;
+}
+
+const canSleep = function(creature) {
+  const obj = {
+    sleep: function() {
+      return `The ${creature.name} sleeps.`
+    }
+  }
+  return obj;
+}
+// We can now create any kind of creature that sleeps and eats
+// In Repl
+> const platypus = sleepingEatingCreature("platypus");
+
+
+
+
+// Refactor all of the above composition code & use arrow functions
+const canEat = (creature) => ({
+  eat: (food) => {
+    return `The ${creature.name} eats the ${food}.`
+  }
+});
+
+const canSleep = (creature) => ({
+  sleep: () => {
+    return `The ${creature.name} sleeps.`
+  }
+});
+
+const sleepingEatingCreature = (name) => {
+  let creature = {
+    name
+  }
+
+  return { ...creature, ...canEat(creature), ...canSleep(creature) };
+};
