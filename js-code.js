@@ -616,6 +616,8 @@ const incrementer = counterFunction();
 > incrementerTwo()
 > const incrementerTwo = counterFunction();
 > incrementerTwo()
+> const incrementerTwo = counterFunction();
+> incrementerTwo()
 1
 > incrementerTwo()
 2
