@@ -97,6 +97,12 @@ function doAThing() {
 
 
 
+
+
+
+
+
+
 // Closures
 function welcome(salutation) {
   return function(yourName) {
@@ -153,6 +159,10 @@ fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=[[API-KEY-
 
 
 
+
+
+
+
 // Currying
 
 // Uncurried Function
@@ -189,6 +199,9 @@ const reasonIlLoveCoding = aThingIMaybeLike("love")("coding");
 'I love coding because it is fun.'
 > reasonILoveCoding("I enjoy problem-solving");
 'I love coding because I enjoy problem-solving.'
+
+
+
 
 
 
@@ -295,6 +308,15 @@ const employees = [
   { name: 'Jasmine', role: 'developer' } ]
 
 
+
+
+
+
+
+
+
+
+
 // Recursion
 // How we first learned to write this:
 let counter = 0
@@ -361,3 +383,84 @@ recurseReverse() {
 
 // trampoline function. 
 // A trampoline function wraps a recursive function in a loop and breaks it down so each function isn't heaped on the stack.
+
+
+
+
+
+
+
+// Spread Operator
+// In Repl
+const myCat = {
+  name: "Murphy",
+  age: 1
+}
+const anotherCat = {...myCat};
+
+// In Repl
+const myCat = {
+  name: "Murphy",
+  age: 1
+}
+
+const myCatGotOlder = {...myCat, age: 2}
+
+// In Repl
+const myCat = {
+  name: "Murphy",
+  age: 1
+}
+
+const myCatGotOlder = {...myCat, age: 2, color: "gray and white"}
+
+
+
+// Merging Objects
+const flagColor1 = {
+  color1: "green"
+}
+
+const flagColor2 = {
+  color2: "gold"
+}
+
+const flagColor3 = {
+  color3: "black"
+}
+
+const jamaicanFlag = {...flagColor1, ...flagColor2, ...flagColor3}
+
+// Swapping color tags
+const flagColor1 = {
+  color1: "green"
+}
+
+const flagColor2 = {
+  color1: "gold"
+}
+
+const flagColor3 = {
+  color1: "black"
+}
+
+const jamaicanFlag = {...flagColor1, ...flagColor2, ...flagColor3}
+// Now if we type in jamaicanFlag, it will return {color1: "black"}.
+
+
+// Object Assign
+const jamaicanFlag = Object.assign({}, flagColor1, flagColor2, flagColor3);
+
+const jamaicanFlag = Object.assign(flagColor1, flagColor2, flagColor3);
+
+// Combine arrays
+const array = [1,2];
+const array2 = [3,4];
+const array3 = [...array, ...array2];
+array3
+[1, 2, 3, 4]
+
+
+// The example below will pass all arguments from the array into the function - as separate arguments, not as an array.
+const array = [1,2,3];
+spreadArgs(...array);
