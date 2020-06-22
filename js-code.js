@@ -465,12 +465,6 @@ array3
 const array = [1,2,3];
 spreadArgs(...array);
 
-
-
-
-
-
-
 // Composition
 // Creating loosely coupled functions
 const canEat = function(creature) {
@@ -563,8 +557,6 @@ const canSleep = function(creature) {
 > const platypus = sleepingEatingCreature("platypus");
 
 
-
-
 // Refactor all of the above composition code & use arrow functions
 const canEat = (creature) => ({
   eat: (food) => {
@@ -585,3 +577,41 @@ const sleepingEatingCreature = (name) => {
 
   return { ...creature, ...canEat(creature), ...canSleep(creature) };
 };
+
+
+
+
+
+
+
+// Storing state in Closures
+const counterFunction = () => {
+  let counter = 0;
+  return () => {
+    counter ++;
+    return counter;
+  }
+}
+// Lexical scope means that an inner function has access to the variables of any outer functions that surround it.
+const incrementer = counterFunction();
+() => {
+  counter ++;
+  return counter;
+}
+// In Repl
+> incrementer()
+1
+> incrementer()
+2
+> incrementer()
+3
+
+// What would happen if we created another incrementer and then called our first incrementer again?
+// In Repl
+> const incrementerTwo = counterFunction();
+> incrementerTwo()
+1
+> incrementerTwo()
+2
+> incrementer()
+4
