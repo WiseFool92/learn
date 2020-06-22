@@ -464,3 +464,38 @@ array3
 // The example below will pass all arguments from the array into the function - as separate arguments, not as an array.
 const array = [1,2,3];
 spreadArgs(...array);
+
+
+
+
+
+
+
+// Composition
+// Creating loosely coupled functions
+const canEat = function(creature) {
+  const obj = {
+    eat: function(food) {
+      return `The ${creature} eats the ${food}.`
+    }
+  }
+  return obj;
+}
+// In Repl
+> const cat = canEat("cat");
+
+// Our cat variable is now an object that has the following property: it can eat food
+{
+  eat: function(food) {
+    return `The cat eats the ${food}.`
+  }
+}
+
+// In Repl
+> cat.eat("salmon");
+'The cat eats the salmon.'
+
+// Enabling the salmon to eat & demonstrating it eating
+> const salmon = canEat("salmon");
+> salmon.eat("insects")
+'The salmon eats the insects.'

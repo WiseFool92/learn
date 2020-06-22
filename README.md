@@ -1,1 +1,3 @@
-Intro to React Examples
+React Work
+
+Nathan Watkins-Hoagland & Antonio Cruz
